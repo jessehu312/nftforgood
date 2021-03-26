@@ -378,6 +378,7 @@ module.exports = {
       '3/6': '50%',
       '4/6': '66.666667%',
       '5/6': '83.333333%',
+      'screen-80': '80vh',
       full: '100%',
       screen: '100vh'
     }),
@@ -743,6 +744,20 @@ module.exports = {
       30: '30',
       40: '40',
       50: '50'
+    },
+    extend: {
+      backgroundImage: (theme) => ({
+        'hero-pattern': "url('/images/hero.png')",
+        'cta-pattern': "url('/images/cta.png')"
+      }),
+      colors: {
+        primary: '#2DD2A1',
+        secondary: '#0DA779',
+        'dark-gray': '#181B23'
+      },
+      textColor: {
+        primary: '#2DD2A1'
+      }
     }
   },
   variantOrder: [
