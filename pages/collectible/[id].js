@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { server } from '@/lib/constants';
-import axios from 'axios';
+import { getCollectibleIds, getCollectible } from '@/lib/firestore';
 import Navbar from '@/components/home/Navbar';
 import PlaceBidModal from '@/components/PlaceBidModal';
 
 const CollectibleProductPage = ({
-  collectibleProductData: {
-    collectible: {
       name,
       description,
       img,
@@ -17,8 +14,6 @@ const CollectibleProductPage = ({
       creatorPhotoURL,
       percentToCharity,
       charityName
-    }
-  }
 }) => {
   const [isBidModalOpen, setBidModalOpen] = useState(false);
   const [infoTabOpen, setInfoTabOpen] = useState(true);
@@ -130,29 +125,15 @@ const CollectibleProductPage = ({
 };
 
 export async function getStaticPaths() {
-  const collectibles = await axios.get(`${server}/api/collectibles`);
-  const { collectibleList } = collectibles.data;
-
-  const paths = collectibleList.map((collectible) => ({
-    params: { id: collectible.id }
-  }));
-
-  return { paths, fallback: false };
+  const paths = await getCollectibleIds();
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params }) {
-  const { id: collectibleId } = params;
-
-  const { data: collectibleProductData } = await axios.get(
-    `${server}/api/collectible/${collectibleId}`
-  );
-
-  console.log(collectibleProductData);
-
   return {
-    props: { collectibleProductData },
+    props: await getCollectible(params.id),
     revalidate: 1
-  };
+  }
 }
 
 export default CollectibleProductPage;

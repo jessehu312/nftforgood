@@ -3,7 +3,6 @@ import ProfilePage from '@/components/ProfilePage';
 
 export async function getStaticPaths() {
   const paths = await getProfileIds();
-  console.log({ paths, fallback: false });
   return { paths, fallback: false }
 }
 
@@ -15,7 +14,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function UserProfile(props) {
-  console.log(props)
   return (
     <ProfilePage {...props} />
   );
