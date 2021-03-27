@@ -759,7 +759,7 @@ module.exports = {
         'dark-gray': '#181B23'
       },
       textColor: {
-        primary: '#2DD2A1'
+        primary: '#2D3C6B'
       }
     }
   },
