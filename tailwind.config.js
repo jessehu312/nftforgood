@@ -31,7 +31,9 @@ module.exports = {
       pri: {
         blue: '#0052A5',
         yellow: '#FFBF2F',
-        orange: '#FF7056'
+        orange: '#FF7056',
+        indigo: '#2D3C6B',
+        faded: '#979797'
       }
     },
     spacing: {
@@ -125,6 +127,7 @@ module.exports = {
       xl: '0.75rem',
       '2xl': '1rem',
       '3xl': '1.5rem',
+      '4xl': '3.125rem',
       full: '9999px'
     },
     borderWidth: {
