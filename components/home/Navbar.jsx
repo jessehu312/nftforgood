@@ -3,14 +3,14 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import SocialSignIn from './SocialSignIn';
 import LogoText from '../LogoText';
-import { PROFILE_URL } from '@/lib/constants';
+import { PROFILE_URL, ROOT_URL } from '@/lib/constants';
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const auth = useAuth();
+  const { user } = auth;
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(true);
-
   return (
     <div className="mx-auto container relative px-6 xl:px-0">
       <nav>
@@ -23,7 +23,7 @@ const Navbar = () => {
                   Home
                 </a>
               </li>
-              {user ? (
+              {user ? (<>
                 <li className="text-white cursor-pointer">
                   <a
                     onClick={() => router.push(PROFILE_URL + user.uid)}
@@ -32,6 +32,15 @@ const Navbar = () => {
                     Dashboard
                   </a>
                 </li>
+                <li className="text-white cursor-pointer">
+                  <a
+                    onClick={() => auth.signOut()}
+                    className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                  >
+                    Sign Out
+                  </a>
+                </li>
+                </>
               ) : (
                 <li className="text-white cursor-pointer">
                   <a
@@ -41,6 +50,7 @@ const Navbar = () => {
                     Get Started
                   </a>
                 </li>
+                
               )}
             </ul>
           </div>

@@ -8,6 +8,9 @@ import { useAuth } from '@/lib/auth';
 const ProfilePage = (props) => {
   const {user} = useAuth();
   const [buttonStatus, setButtonStatus] = useState('sale');
+  if (!user) {
+    return null;
+  }
   return (
     <div className="bg-pri-indigo">
       <Navbar />
