@@ -19,7 +19,7 @@ const Navbar = () => {
           <div className="flex">
             <ul className="font-normal text-lg flex space-x-16 justify-between items-center text-white">
               <li className="text-white cursor-pointer">
-                <a className="hover:text-yellow-500 transition duration-200 ease-in-out">
+                <a onClick={() => router.push(ROOT_URL)} className="hover:text-yellow-500 transition duration-200 ease-in-out">
                   Home
                 </a>
               </li>
