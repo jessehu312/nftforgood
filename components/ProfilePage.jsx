@@ -4,16 +4,9 @@ import CollectibleCard from '@/components/CollectibleCard';
 import UnderlinedTabs from '@/components/UnderlinedTabs';
 import Footer from '@/components/home/Footer';
 
-const ProfilePage = () => {
-  const [buttonStatus, setButtonStatus] = useState('On Sale');
-  const CollectibleData = Array(8).fill({
-    name: '#003 - Keko Egg',
-    img: 'keko-egg.svg',
-    eth: '0.389 ETH',
-    type: 'games',
-    qty: '1 of 1'
-  });
-
+const ProfilePage = (props) => {
+  const [buttonStatus, setButtonStatus] = useState('sale');
+  
   return (
     <div className="bg-pri-indigo">
       <Navbar />
@@ -28,18 +21,14 @@ const ProfilePage = () => {
             buttonStatus={buttonStatus}
             setButtonStatus={setButtonStatus}
           >
-            <div label="On Sale"></div>
-            <div label="My Collectibles"></div>
+            <div label="On Sale" value="sale"></div>
+            <div label="My Collectibles" value="all"></div>
           </UnderlinedTabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
-            {CollectibleData.map((el, idx) => (
+            {props[buttonStatus].map((el, idx) => (
               <CollectibleCard
                 key={idx}
-                name={el?.name}
-                img={el?.img}
-                eth={el?.eth}
-                type={el?.type}
-                qty={el?.qty}
+                {...el}
               />
             ))}
           </div>
