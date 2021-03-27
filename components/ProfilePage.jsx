@@ -6,7 +6,6 @@ import Footer from '@/components/home/Footer';
 
 const ProfilePage = (props) => {
   const [buttonStatus, setButtonStatus] = useState('sale');
-  
   return (
     <div className="bg-pri-indigo">
       <Navbar />
