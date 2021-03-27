@@ -9,10 +9,10 @@ const Header = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-hero-pattern h-screen-80">
+    <div className="bg-hero-pattern min-h-screen-80">
       <Navbar />
-      <div className="max-w-screen-xl mx-auto px-4 xl:px-0">
-        <div className="flex flex-col md:flex-row justify-center lg:justify-between items-center flex-wrap md:py-0 py-16">
+      <div className="max-w-screen-xl mx-auto px-4 xl:px-0 py-16">
+        <div className="flex flex-col md:flex-row justify-center xl:justify-between items-center flex-wrap md:py-0 pb-16">
           <div className="w-full lg:max-w-xl pl-12">
             <div className="py-8">
               <div className="text-yellow-400 font-bold text-5xl pb-4">
@@ -26,7 +26,7 @@ const Header = () => {
             </div>
           </div>
           <img
-            className="hidden lg:block md:w-120"
+            className="lg:block md:w-120"
             src="/images/nft-box.png"
             alt="NFT Box"
           />
