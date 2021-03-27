@@ -76,7 +76,7 @@ const CollectiblesList = () => {
           </h1>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-16">
             {collectibleData.map((el, idx) => (
-              <Collectible iter={idx} {...el} />
+              <Collectible iter={idx} {...el} key={idx}/>
             ))}
           </div>
         </div>
