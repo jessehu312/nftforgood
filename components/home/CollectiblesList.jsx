@@ -1,72 +1,7 @@
 import React from 'react';
-import Collectible from './Collectible';
+import CollectibleCard from '../CollectibleCard';
 
-const CollectiblesList = () => {
-  const collectibleData = [
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    },
-    {
-      name: '003 - Keko Egg',
-      fiatPrice: '0.389 ETH',
-      img: 'keko-egg.png',
-      inStock: 1,
-      totalQuantity: 1
-    }
-  ];
+const CollectiblesList = (props) => {
   return (
     <div className="bg-primary pb-36">
       <div className="max-w-screen-xl mx-auto px-8 py-8 xl:px-0">
@@ -75,8 +10,8 @@ const CollectiblesList = () => {
             Trending Collectibles
           </h1>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-16">
-            {collectibleData.map((el, idx) => (
-              <Collectible iter={idx} {...el} key={idx}/>
+            {props.all.map((el, idx) => (
+              <CollectibleCard key={idx} {...el} />
             ))}
           </div>
         </div>
