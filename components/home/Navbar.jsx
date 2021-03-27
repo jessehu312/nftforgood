@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import SocialSignIn from './SocialSignIn';
 import LogoText from '../LogoText';
+import { PROFILE_URL } from '@/lib/constants';
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -25,7 +26,7 @@ const Navbar = () => {
               {user ? (
                 <li className="text-white cursor-pointer">
                   <a
-                    onClick={() => router.push('/dashboard')}
+                    onClick={() => router.push(PROFILE_URL + user.uid)}
                     className="hover:text-yellow-500 transition duration-200 ease-in-out"
                   >
                     Dashboard
