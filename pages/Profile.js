@@ -1,7 +1,7 @@
 import ProfilePage from "@/components/ProfilePage";
 
-export default function Profile() {
+export default function Profile(props) {
   return (
-    <ProfilePage />
+    <ProfilePage {...props} />
   );
 }
