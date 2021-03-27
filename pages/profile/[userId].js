@@ -9,7 +9,8 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   return {
-    props: await getUserCollectibles(params.userId)
+    props: await getUserCollectibles(params.userId),
+    revalidate: 1
   }
 }
 

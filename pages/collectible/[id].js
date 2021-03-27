@@ -150,7 +150,8 @@ export async function getStaticProps({ params }) {
   console.log(collectibleProductData);
 
   return {
-    props: { collectibleProductData }
+    props: { collectibleProductData },
+    revalidate: 1
   };
 }
 

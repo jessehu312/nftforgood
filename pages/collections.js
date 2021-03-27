@@ -4,6 +4,7 @@ import { getAllCollectibles } from '@/lib/firestore';
 export async function getStaticProps(context) {
   return {
     props: await getAllCollectibles(), // will be passed to the page component as props
+    revalidate: 1
   }
 }
 
