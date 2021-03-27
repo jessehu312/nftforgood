@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { getCollectibleIds, getCollectible } from '@/lib/firestore';
+import React, { useState, useEffect } from 'react';
+import { getCollectibleIds, getCollectible, incrementViews } from '@/lib/firestore';
 import Navbar from '@/components/home/Navbar';
 import PlaceBidModal from '@/components/PlaceBidModal';
 
 const CollectibleProductPage = ({
       name,
+      id,
       description,
       img,
       fiatPrice,
@@ -17,6 +18,12 @@ const CollectibleProductPage = ({
 }) => {
   const [isBidModalOpen, setBidModalOpen] = useState(false);
   const [infoTabOpen, setInfoTabOpen] = useState(true);
+  useEffect(
+    () => {
+      incrementViews(id);
+    },
+    []
+  )
   return (
     <div className="min-h-screen bg-primary">
       <div className="border-b">
@@ -131,7 +138,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   return {
-    props: await getCollectible(params.id),
+    props:{ ...(await getCollectible(params.id)), id: params.id},
     revalidate: 1
   }
 }
