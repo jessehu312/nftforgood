@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import CollectibleCard from '../CollectibleCard';
+import Tabs from '@/components/home/Tabs';
 import Navbar from '@/components/home/Navbar';
-import CollectibleCard from '@/components/CollectibleCard';
-import UnderlinedTabs from '@/components/UnderlinedTabs';
+import Banner from '@/components/home/Banner';
 import Footer from '@/components/home/Footer';
 
-const ProfilePage = () => {
-  const [buttonStatus, setButtonStatus] = useState('On Sale');
-  const CollectibleData = Array(8).fill({
+const Collectibles = () => {
+  const CollectibleData = Array(12).fill({
     name: '#003 - Keko Egg',
     img: 'keko-egg.svg',
     eth: '0.389 ETH',
@@ -14,23 +14,23 @@ const ProfilePage = () => {
     qty: '1 of 1'
   });
 
+  const [buttonStatus, setButtonStatus] = useState('All');
+
   return (
     <div className="bg-pri-indigo">
       <Navbar />
       <div className="max-w-screen-xl mx-auto px-8 py-8 xl:px-0">
         <div className="flex flex-col items-center justify-center mx-16">
-          <img src="/images/ten-hundred.svg" className="mt-24"></img>
-          <h1 className="text-white font-bold text-4xl my-2">Ten Hundred</h1>
-          <h2 className="text-white font-light mb-36">
-            So in love with crypto and art
-          </h2>
-          <UnderlinedTabs
-            buttonStatus={buttonStatus}
-            setButtonStatus={setButtonStatus}
-          >
-            <div label="On Sale"></div>
-            <div label="My Collectibles"></div>
-          </UnderlinedTabs>
+          <h1 className="text-primary text-pri-yellow text-5xl font-bold mb-6 w-full">
+            Explore Collectibles
+          </h1>
+          <Tabs buttonStatus={buttonStatus} setButtonStatus={setButtonStatus}>
+            <div label="All"></div>
+            <div label="Art"></div>
+            <div label="Photography"></div>
+            <div label="Games"></div>
+            <div label="Memes"></div>
+          </Tabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
             {CollectibleData.map((el, idx) => (
               <CollectibleCard
@@ -45,10 +45,10 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-      <div className="my-32"></div>
+      <Banner />
       <Footer />
     </div>
   );
 };
 
-export default ProfilePage;
+export default Collectibles;

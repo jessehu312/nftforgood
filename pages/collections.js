@@ -1,4 +1,4 @@
-import Collectibles from "@/components/home/Collectibles";
+import Collectibles from "@/components/home/CollectiblesFilter";
 
 export default function CollectibleList() {
   return (
