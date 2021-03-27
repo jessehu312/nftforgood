@@ -3,16 +3,21 @@ import Navbar from '@/components/home/Navbar';
 import CollectibleCard from '@/components/CollectibleCard';
 import UnderlinedTabs from '@/components/UnderlinedTabs';
 import Footer from '@/components/home/Footer';
+import { useAuth } from '@/lib/auth';
 
 const ProfilePage = (props) => {
+  const {user} = useAuth();
   const [buttonStatus, setButtonStatus] = useState('sale');
+  if (!user) {
+    return null;
+  }
   return (
     <div className="bg-pri-indigo">
       <Navbar />
       <div className="max-w-screen-xl mx-auto px-8 py-8 xl:px-0">
         <div className="flex flex-col items-center justify-center mx-16">
-          <img src="/images/ten-hundred.svg" className="mt-24"></img>
-          <h1 className="text-white font-bold text-4xl my-2">Ten Hundred</h1>
+          <img src={user.photoUrl} className="mt-24 rounded-full"></img>
+          <h1 className="text-white font-bold text-4xl my-2">{user.name}</h1>
           <h2 className="text-white font-light mb-36">
             So in love with crypto and art
           </h2>
