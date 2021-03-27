@@ -1,17 +1,22 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Header from '@/components/home/Header';
+import CharityList from '@/components/home/CharityList';
+import CollectiblesList from '@/components/home/CollectiblesList';
+import Banner from '@/components/home/Banner';
+import Footer from '@/components/home/Footer';
 
-export default function Home(props) {
+export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>NFTForGood</title>
+        <title>NFT4Good</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <div className="min-h-screen w-full flex flex-row justify-center items-center">
-        <h1 className="text-3xl font-extrabold">Home Page</h1>
-      </div>
+      <Header />
+      <CharityList />
+      <CollectiblesList />
+      <Banner />
+      <Footer />
     </div>
   );
 }
