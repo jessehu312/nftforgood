@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import CollectibleCard from "../CollectibleCard";
-import Tabs from "@/components/home/Tabs";
+import React, { useState } from 'react';
+import CollectibleCard from '../CollectibleCard';
+import Tabs from '@/components/home/Tabs';
+import Navbar from '@/components/home/Navbar';
+import Banner from '@/components/home/Banner';
+import Footer from '@/components/home/Footer';
 
 const Collectibles = () => {
   const CollectibleData = [
@@ -93,7 +96,8 @@ const Collectibles = () => {
   const [buttonStatus, setButtonStatus] = useState("All");
 
   return (
-    <div className='bg-pri-indigo pt-24 pb-36'>
+    <div className='bg-pri-indigo'>
+      <Navbar />
       <div className='max-w-screen-xl mx-auto px-8 py-8 xl:px-0'>
         <div className='flex flex-col items-center justify-center mx-16'>
           <h1 className='text-primary text-pri-yellow text-5xl font-bold mb-6 w-full'>
@@ -123,7 +127,10 @@ const Collectibles = () => {
           </div>
         </div>
       </div>
+      <Banner />
+      <Footer />
     </div>
+    
   );
 }
 
