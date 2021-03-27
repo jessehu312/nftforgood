@@ -5,16 +5,8 @@ import Navbar from '@/components/home/Navbar';
 import Banner from '@/components/home/Banner';
 import Footer from '@/components/home/Footer';
 
-const Collectibles = () => {
-  const CollectibleData = Array(12).fill({
-    name: '#003 - Keko Egg',
-    img: 'keko-egg.svg',
-    eth: '0.389 ETH',
-    type: 'games',
-    qty: '1 of 1'
-  });
-
-  const [buttonStatus, setButtonStatus] = useState('All');
+const Collectibles = (props) => {
+  const [buttonStatus, setButtonStatus] = useState('all');
 
   return (
     <div className="bg-pri-indigo">
@@ -25,21 +17,17 @@ const Collectibles = () => {
             Explore Collectibles
           </h1>
           <Tabs buttonStatus={buttonStatus} setButtonStatus={setButtonStatus}>
-            <div label="All"></div>
-            <div label="Art"></div>
-            <div label="Photography"></div>
-            <div label="Games"></div>
-            <div label="Memes"></div>
+            <div label="all"></div>
+            <div label="art"></div>
+            <div label="photography"></div>
+            <div label="games"></div>
+            <div label="memes"></div>
           </Tabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
-            {CollectibleData.map((el, idx) => (
+            {props[buttonStatus].map((el, idx) => (
               <CollectibleCard
                 key={idx}
-                name={el?.name}
-                img={el?.img}
-                eth={el?.eth}
-                type={el?.type}
-                qty={el?.qty}
+                {...el}
               />
             ))}
           </div>
