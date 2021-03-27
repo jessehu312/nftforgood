@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import SocialSignIn from './SocialSignIn';
+import LogoText from '../LogoText';
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -14,12 +14,7 @@ const Navbar = () => {
     <div className="mx-auto container relative px-6 xl:px-0">
       <nav>
         <div className="lg:flex justify-between w-full py-12 hidden">
-          <div className="flex flex-row justify-start items-center lg:pl-4">
-            <Image src="/images/logo.png" alt="me" width="50" height="50" />
-            <h1 className="lg:ml-2 font-bold text-white text-3xl tracking-wide">
-              NFT<span className="text-yellow-400">4</span>Good
-            </h1>
-          </div>
+          <LogoText showImage/>
           <div className="flex">
             <ul className="font-normal text-lg flex space-x-16 justify-between items-center text-white">
               <li className="text-white cursor-pointer">
@@ -52,12 +47,7 @@ const Navbar = () => {
       </nav>
       <nav className="lg:hidden py-4">
         <div className="flex py-2 justify-between items-center">
-          <div className="flex flex-row items-center space-x-2">
-            <Image src="/images/logo.png" alt="me" width="50" height="50" />
-            <h1 className="lg:ml-2 font-bold text-white text-3xl tracking-wide">
-              NFT<span className="text-yellow-400">4</span>Good
-            </h1>
-          </div>
+          <LogoText showImage/>
           <div className="flex items-center">
             {show ? (
               <ul
