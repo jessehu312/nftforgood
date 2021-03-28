@@ -104,7 +104,7 @@ const CollectibleProductPage = ({
                 </div>
                 <div className="mt-6">
                   <div className="bg-white rounded-lg p-6">
-                    <div className="flex flex-row items-center space-x-2 mb-4">
+                    {/* <div className="flex flex-row items-center space-x-2 mb-4">
                       <img
                         className="rounded-full w-12 h-12 object-cover"
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK9gqFKRn28xKHD1CAbEevdzsLmsv5yQkGnQ&usqp=CAU"
@@ -119,7 +119,7 @@ const CollectibleProductPage = ({
                           0.07 ETH
                         </span>
                       </div>
-                    </div>
+                    </div> */}
                     <button
                       onClick={() => setBidModalOpen(true)}
                       className="rounded-lg bg-primary text-white p-4 w-full"
