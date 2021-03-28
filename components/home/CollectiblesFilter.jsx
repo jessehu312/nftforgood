@@ -25,7 +25,10 @@ const Collectibles = (props) => {
           </Tabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
             {props[buttonStatus].map((el, idx) => (
-              <CollectibleCard key={idx} {...el} />
+              <CollectibleCard
+                key={idx}
+                {...el}
+              />
             ))}
           </div>
         </div>
