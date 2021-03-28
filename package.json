@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "@tailwindcss/jit": "^0.1.11",
     "autoprefixer": "^10.2.5",
-    "axios": "^0.21.1",
+    "deepai": "^1.0.17",
     "firebase": "^8.3.1",
     "framer-motion": "^4.0.3",
     "js-cookie": "^2.2.1",

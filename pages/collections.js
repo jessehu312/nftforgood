@@ -1,7 +1,15 @@
-import Collectibles from "@/components/home/Collectibles";
+import CollectiblesFilter from "@/components/home/CollectiblesFilter";
+import { getAllCollectibles } from '@/lib/firestore';
 
-export default function CollectibleList() {
+export async function getStaticProps(context) {
+  return {
+    props: await getAllCollectibles(), // will be passed to the page component as props
+    revalidate: 1
+  }
+}
+
+export default function CollectibleList(props) {
   return (
-    <Collectibles />
+    <CollectiblesFilter {...props}/>
   );
 }

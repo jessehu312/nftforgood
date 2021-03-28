@@ -1,27 +1,30 @@
-import React, { useState } from 'react';
-import { server } from '@/lib/constants';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import {
+  getCollectibleIds,
+  getCollectible,
+  incrementViews
+} from '@/lib/firestore';
 import Navbar from '@/components/home/Navbar';
 import PlaceBidModal from '@/components/PlaceBidModal';
 
 const CollectibleProductPage = ({
-  collectibleProductData: {
-    collectible: {
-      name,
-      description,
-      img,
-      fiatPrice,
-      inStock,
-      totalQuantity,
-      creatorName,
-      creatorPhotoURL,
-      percentToCharity,
-      charityName
-    }
-  }
+  name,
+  id,
+  description,
+  img,
+  fiatPrice,
+  inStock,
+  totalQuantity,
+  creatorName,
+  creatorPhotoURL,
+  percentToCharity,
+  charityName
 }) => {
   const [isBidModalOpen, setBidModalOpen] = useState(false);
   const [infoTabOpen, setInfoTabOpen] = useState(true);
+  useEffect(() => {
+    incrementViews(id);
+  }, []);
   return (
     <div className="min-h-screen bg-primary">
       <div className="border-b">
@@ -130,27 +133,14 @@ const CollectibleProductPage = ({
 };
 
 export async function getStaticPaths() {
-  const collectibles = await axios.get(`${server}/api/collectibles`);
-  const { collectibleList } = collectibles.data;
-
-  const paths = collectibleList.map((collectible) => ({
-    params: { id: collectible.id }
-  }));
-
+  const paths = await getCollectibleIds();
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const { id: collectibleId } = params;
-
-  const { data: collectibleProductData } = await axios.get(
-    `${server}/api/collectible/${collectibleId}`
-  );
-
-  console.log(collectibleProductData);
-
   return {
-    props: { collectibleProductData }
+    props: { ...(await getCollectible(params.id)), id: params.id },
+    revalidate: 1
   };
 }
 

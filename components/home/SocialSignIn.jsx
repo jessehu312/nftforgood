@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { useAuth } from '@/lib/auth';
+import { PROFILE_URL } from '@/lib/constants';
+import { useRouter } from 'next/router';
 
 const SocialSignIn = ({ setOpen }) => {
   const auth = useAuth();
-
+  const router = useRouter();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -45,7 +47,7 @@ const SocialSignIn = ({ setOpen }) => {
         </div>
         <div className="mt-4 px-4 flex flex-col space-y-4 items-center justify-center">
           <button
-            onClick={() => auth.signInWithGoogle()}
+            onClick={() => auth.signInWithGoogle().then(() => router.push(PROFILE_URL))}
             className="bg-white w-full flex flex-row justify-center items-center rounded shadow-sm transition duration-200 ease-in-out transform hover:-translate-y-1"
           >
             <div className="bg-white inline-block p-2 rounded m-1">
@@ -56,7 +58,7 @@ const SocialSignIn = ({ setOpen }) => {
             </span>
           </button>
           <button
-            onClick={() => auth.signInWithGithub()}
+            onClick={() => auth.signInWithGithub().then(() => router.push(PROFILE_URL))}
             className="bg-gray-900 w-full flex flex-row justify-center items-center rounded shadow-sm transition duration-200 ease-in-out transform hover:-translate-y-1"
           >
             <div className="bg-transparent inline-block p-2 rounded m-1">
