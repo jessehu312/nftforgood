@@ -30,10 +30,18 @@ const Navbar = () => {
                   </li>
                   <li className="text-white cursor-pointer">
                     <a
+                      onClick={() => router.push('/collections')}
+                      className="bg-primary border border-yellow-400 text-yellow-400 px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
+                    >
+                      Explore
+                    </a>
+                  </li>
+                  <li className="text-white cursor-pointer">
+                    <a
                       onClick={() => router.push('/create')}
                       className="bg-primary border border-yellow-400 text-yellow-400 px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
                     >
-                      Add Collectible
+                      Create
                     </a>
                   </li>
                   <li className="text-white text-sm cursor-pointer">

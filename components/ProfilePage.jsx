@@ -3,10 +3,8 @@ import Navbar from '@/components/home/Navbar';
 import CollectibleCard from '@/components/CollectibleCard';
 import UnderlinedTabs from '@/components/UnderlinedTabs';
 import Footer from '@/components/home/Footer';
-import { useAuth } from '@/lib/auth';
 
-const ProfilePage = (props) => {
-  const {user} = useAuth();
+const ProfilePage = ({user, collectibles}) => {
   const [buttonStatus, setButtonStatus] = useState('sale');
   if (!user) {
     return null;
@@ -29,7 +27,7 @@ const ProfilePage = (props) => {
             <div label="My Collectibles" value="all"></div>
           </UnderlinedTabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
-            {props[buttonStatus].map((el, idx) => (
+            {collectibles[buttonStatus].map((el, idx) => (
               <CollectibleCard
                 key={idx}
                 {...el}
