@@ -75,9 +75,7 @@ const CreateCollectible = () => {
             <h2 className="inline-block text-white text-3xl mb-6 font-medium">
               Upload File
             </h2>
-            <h2 className="inline-block text-white float-right text-3xl mb-6 font-medium">
-              Preview
-            </h2>
+            <h2 className="inline-block text-white float-right text-3xl mb-6 font-medium"></h2>
           </div>
           <div>
             <div className="inline-block mb-32 w-5/12">
