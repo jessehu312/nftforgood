@@ -8,8 +8,10 @@ import { addNewCollectible } from '@/lib/firestore';
 import { useRouter } from 'next/router';
 import { COLLECTIBLE_URL } from '@/lib/constants';
 import Switch from 'react-switch';
+import Loader from './common/Loader';
 
 const CreateCollectible = () => {
+  const [previewLoader, setPreviewLoader] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [checked, setChecked] = useState(false);
   const [file, setFile] = useState('');
@@ -27,6 +29,7 @@ const CreateCollectible = () => {
   }
 
   const handleFileInput = async (e) => {
+    setPreviewLoader(true);
     const file = e.target.files[0];
     if (!file) return;
 
@@ -35,6 +38,7 @@ const CreateCollectible = () => {
     ref.put(file, { contentType: 'image/png' }).then((data) => {
       data.ref.getDownloadURL().then((url) => {
         setFile(url);
+        setPreviewLoader(false);
       });
     });
   };
@@ -96,24 +100,22 @@ const CreateCollectible = () => {
                 />
               </label>
             </div>
-            <img
-              src={file}
-              className="rounded shadow inline-block object-contain max-w-64 max-h-64 float-right"
-            />
+            {!previewLoader ? (
+              <img
+                src={file}
+                className="rounded shadow inline-block object-contain max-w-64 max-h-64 float-right"
+              />
+            ) : (
+              <div className="float-right">
+                <Loader />
+              </div>
+            )}
           </div>
           <div>
             <h2 className="inline-block text-white text-3xl font-medium">
               Put on Sale
             </h2>
             <div className="inline-block ml-64">
-              {/* <Checkbox
-                checked={checked}
-                checkmarkType={STYLE_TYPE.toggle_round}
-                onChange={(e) => setChecked(e.target.checked)}
-                labelPlacement={LABEL_PLACEMENT.right}
-              >
-                <p className="text-white">On Sale</p>
-              </Checkbox> */}
               <Switch
                 onChange={() => setChecked(!checked)}
                 checked={checked}
@@ -136,7 +138,7 @@ const CreateCollectible = () => {
           </h3>
           <h2 className="text-white text-3xl font-medium mb-3">Name</h2>
           <input
-            className="  w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8"
+            className="outline-none w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8"
             placeholder="e.g. Keko Egg"
             value={name}
             onChange={(e) => setName(e.target.value)}
