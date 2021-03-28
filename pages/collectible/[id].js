@@ -16,7 +16,7 @@ const CollectibleProductPage = ({
   inStock,
   totalQuantity,
   creatorName,
-  creatorPhotoURL,
+  creatorPhotoUrl,
   percentToCharity,
   charityName
 }) => {
@@ -77,7 +77,7 @@ const CollectibleProductPage = ({
                   <div className="flex flex-row items-center space-x-2">
                     <img
                       className="rounded-full w-12 h-12 object-cover"
-                      src={creatorPhotoURL}
+                      src={creatorPhotoUrl}
                       alt={name}
                     />
                     <span className="text-white font-semibold mb-1">
@@ -138,6 +138,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log(await getCollectible(params.id));
   return {
     props: { ...(await getCollectible(params.id)), id: params.id },
     revalidate: 1

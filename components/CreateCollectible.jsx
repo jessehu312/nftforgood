@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/home/Navbar';
 import Footer from '@/components/home/Footer';
-import { FileUploader } from "baseui/file-uploader";
-import { Checkbox, STYLE_TYPE, LABEL_PLACEMENT } from "baseui/checkbox";
-import { upload } from "@/lib/upload";
+import { FileUploader } from 'baseui/file-uploader';
+import { Checkbox, STYLE_TYPE, LABEL_PLACEMENT } from 'baseui/checkbox';
+import { upload } from '@/lib/upload';
 import { useAuth } from '@/lib/auth';
 import { addNewCollectible } from '@/lib/firestore';
 import { useRouter } from 'next/router';
 import { COLLECTIBLE_URL } from '@/lib/constants';
 
 const CreateCollectible = () => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const [checked, setChecked] = useState(false);
-  const [file, setFile] = useState("");
-  const [name, setName] = useState("");
-  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState('');
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
   const [price, setPrice] = useState();
-  const [charity, setCharity] = useState("");
-  const [percent, setPercent] = useState("");
-  const [bid, setBid] = useState("");
+  const [charity, setCharity] = useState('');
+  const [percent, setPercent] = useState('');
+  const [bid, setBid] = useState('');
   const { user } = useAuth();
   const router = useRouter();
 
@@ -27,13 +27,14 @@ const CreateCollectible = () => {
   }
 
   const uploadFile = (file) => {
-    const result = upload(file[0])
-    result.then(downloadUrl => {
-      setFile(downloadUrl);
-    })
-    .catch(error => {
-      setErrorMessage(error);
-    });
+    const result = upload(file[0]);
+    result
+      .then((downloadUrl) => {
+        setFile(downloadUrl);
+      })
+      .catch((error) => {
+        setErrorMessage(error);
+      });
   };
 
   const Submit = () => {
@@ -49,99 +50,140 @@ const CreateCollectible = () => {
       percent: percent,
       bid: bid,
       creatorPhotoUrl: user.photoUrl
-    }
+    };
     console.log(form);
-    addNewCollectible(form).then(id => {
+    addNewCollectible(form).then((id) => {
       router.push(COLLECTIBLE_URL + id);
     });
-  }
+  };
 
   return (
-    <div className='bg-pri-indigo'>
+    <div className="bg-pri-indigo">
       <Navbar />
-      <div className="flex flex-col justify-center mx-16 bg-pri-indigo">
-        <h1 className="text-primary text-pri-yellow text-5xl font-bold mb-6 w-full">
-          Create Collectible
-        </h1>
-        <div>
-          <h2 className="inline-block text-white text-3xl mb-6 font-medium">
-            Upload File
-          </h2>
-          <h2 className="inline-block text-white float-right text-3xl mb-6 font-medium">
-            Preview
-          </h2>
-        </div>
-        <div>
-          <div className="inline-block mb-32 w-5/12 border-4">
-            <FileUploader errorMessage={errorMessage} onDropAccepted={uploadFile} accept="image/*" />
+      <div className="max-w-screen-xl mx-auto px-8 py-8 xl:px-0">
+        <div className="flex flex-col justify-center mx-16 bg-pri-indigo">
+          <h1 className="text-primary text-pri-yellow text-5xl font-bold mb-6 w-full">
+            Create Collectible
+          </h1>
+          <div>
+            <h2 className="inline-block text-white text-3xl mb-6 font-medium">
+              Upload File
+            </h2>
+            <h2 className="inline-block text-white float-right text-3xl mb-6 font-medium">
+              Preview
+            </h2>
           </div>
-          <img src={file} className="inline-block object-contain max-w-64 max-h-64 float-right" />
-        </div>
-        <div>
-          <h2 className="inline-block text-white text-3xl font-medium">
-            Put on Sale
-          </h2>
-          <div className="inline-block ml-64">
-            <Checkbox
-              checked={checked}
-              checkmarkType={STYLE_TYPE.toggle_round}
-              onChange={e => setChecked(e.target.checked)}
-              labelPlacement={LABEL_PLACEMENT.right}
-            >
-              <p className="text-white">On Sale</p>
-            </Checkbox>
+          <div>
+            <div className="inline-block mb-32 w-5/12 border-4">
+              <FileUploader
+                errorMessage={errorMessage}
+                onDropAccepted={uploadFile}
+                accept="image/*"
+              />
+            </div>
+            <img
+              src={file}
+              className="inline-block object-contain max-w-64 max-h-64 float-right"
+            />
           </div>
+          <div>
+            <h2 className="inline-block text-white text-3xl font-medium">
+              Put on Sale
+            </h2>
+            <div className="inline-block ml-64">
+              <Checkbox
+                checked={checked}
+                checkmarkType={STYLE_TYPE.toggle_round}
+                onChange={(e) => setChecked(e.target.checked)}
+                labelPlacement={LABEL_PLACEMENT.right}
+              >
+                <p className="text-white">On Sale</p>
+              </Checkbox>
+            </div>
+          </div>
+          <h3 className="text-white text-opacity-50 mb-8">
+            You'll receive bids on this item
+          </h3>
+          <h2 className="text-white text-3xl font-medium mb-3">Name</h2>
+          <input
+            className="  w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8"
+            placeholder="e.g. Keko Egg"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <h2 className="text-white text-3xl mb-4 font-medium mb-3">
+            Description
+          </h2>
+          <input
+            className="outline-none w-5/12 bg-pri-indigo mb-6 border-b text-white break-all"
+            placeholder="e.g. Rare egg that contains something you've never thought to exist."
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          />
+          <h2 className="text-white text-3xl mb-4 font-medium">Price</h2>
+          <div className="mb-12">
+            <input
+              className="w-1/5 rounded-md pl-2 py-2"
+              placeholder="0.02"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+            <p className="inline-block ml-4 text-white font-medium">ETH</p>
+          </div>
+          <h2 className="text-white text-3xl mb-4 font-medium">
+            Donate to Charity
+          </h2>
+          <input
+            list="charities"
+            className="w-5/12 rounded-md mb-12 pl-2 py-2"
+            placeholder="Name of Charity"
+            value={charity}
+            onChange={(e) => setCharity(e.target.value)}
+          />
+          <datalist id="charities">
+            <option value="Charity 1" />
+            <option value="Charity 2" />
+            <option value="Charity 3" />
+            <option value="Charity 4" />
+            <option value="Charity 5" />
+          </datalist>
+          <h2 className="text-white text-3xl mb-4 font-medium">
+            Donation Percentage
+          </h2>
+          <div>
+            <input
+              className="w-1/5 rounded-md mb-12 pl-2 py-2"
+              placeholder="10"
+              value={percent}
+              onChange={(e) => setPercent(e.target.value)}
+            />
+            <p className="inline-block ml-4 text-white font-medium">
+              % (min. 10)
+            </p>
+          </div>
+          <h2 className="text-white text-3xl mb-4 font-medium">
+            Duration of Bid
+          </h2>
+          <div>
+            <input
+              className="w-1/5 rounded-md mb-12 pl-2 py-2"
+              placeholder="1"
+              value={bid}
+              onChange={(e) => setBid(e.target.value)}
+            />
+            <p className="inline-block ml-4 text-white font-medium">Day(s)</p>
+          </div>
+          <button
+            onClick={Submit}
+            className="text-pri-indigo font-bold bg-pri-yellow w-36 h-10 rounded-2xl mb-24"
+          >
+            Submit
+          </button>
         </div>
-        <h3 className="text-white text-opacity-50 mb-8">
-          You'll receive bids on this item
-        </h3>
-        <h2 className="text-white text-3xl font-medium mb-3">
-          Name
-        </h2>
-        <input className="w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8" placeholder="e.g. Keko Egg" value={name} onChange={(e) => setName(e.target.value)} />
-        <h2 className="text-white text-3xl mb-4 font-medium mb-3">
-          Description
-        </h2>
-        <input className="w-5/12 bg-pri-indigo mb-6 border-b text-white break-all" placeholder="e.g. Rare egg that contains something you've never thought to exist." value={desc} onChange={(e) => setDesc(e.target.value)}/>
-        <h2 className="text-white text-3xl mb-4 font-medium">
-          Price
-        </h2>
-        <div className="mb-12">
-          <input className="w-1/5 rounded-md pl-2 h-6" placeholder="0.02" value={price} onChange={(e) => setPrice(e.target.value)} />
-          <p className="inline-block ml-4 text-white font-medium">ETH</p>
-        </div>
-        <h2 className="text-white text-3xl mb-4 font-medium">
-          Donate to Charity
-        </h2>
-        <input list="charities" className="w-5/12 rounded-md mb-12 pl-2 h-6" placeholder="Name of Charity" value={charity} onChange={(e) => setCharity(e.target.value)} />
-        <datalist id="charities">
-          <option value="Charity 1" />
-          <option value="Charity 2" />
-          <option value="Charity 3" />
-          <option value="Charity 4" />
-          <option value="Charity 5" />
-        </datalist>
-        <h2 className="text-white text-3xl mb-4 font-medium">
-          Donation Percentage
-        </h2>
-        <div>
-          <input className="w-1/5 rounded-md mb-12 pl-2 h-6" placeholder="10" value={percent} onChange={(e) => setPercent(e.target.value)}/>
-          <p className="inline-block ml-4 text-white font-medium">% (min. 10)</p>
-        </div>
-        <h2 className="text-white text-3xl mb-4 font-medium">
-          Duration of Bid
-        </h2>
-        <div>
-          <input className="w-1/5 rounded-md mb-12 pl-2 h-6" placeholder="1" value={bid} onChange={(e) => setBid(e.target.value)} />
-          <p className="inline-block ml-4 text-white font-medium">Day(s)</p>
-        </div>
-        <button onClick={Submit} className="text-pri-indigo font-bold bg-pri-yellow w-36 h-10 rounded-2xl mb-24">
-          Submit
-        </button>
       </div>
       <Footer />
     </div>
   );
-}
+};
 
 export default CreateCollectible;
