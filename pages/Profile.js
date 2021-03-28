@@ -15,6 +15,7 @@ export async function getStaticProps({ params }) {
 export default function Profile(props) {
   const auth = useAuth();
   const router = useRouter();
+
   useEffect(() => {
     if (auth.user && auth.user.uid) {
       router.push(PROFILE_URL + auth.user.uid);
