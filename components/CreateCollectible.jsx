@@ -46,15 +46,15 @@ const CreateCollectible = () => {
   const Submit = () => {
     const form = {
       creatorId: user.uid,
-      file: file,
-      checked: checked,
-      name: name,
+      file,
+      checked,
+      name,
       creatorName: user.name,
-      desc: desc,
-      price: price,
-      charity: charity,
-      percent: percent,
-      bid: bid,
+      desc,
+      price,
+      charity,
+      percent,
+      bid,
       creatorPhotoUrl: user.photoUrl
     };
     console.log(form);
