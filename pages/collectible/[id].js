@@ -134,7 +134,7 @@ const CollectibleProductPage = ({
 
 export async function getStaticPaths() {
   const paths = await getCollectibleIds();
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
