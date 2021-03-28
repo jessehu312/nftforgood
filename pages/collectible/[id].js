@@ -38,7 +38,7 @@ const CollectibleProductPage = ({
             src={img}
             alt={name}
           />
-          <div className="transition-all border rounded-lg p-8">
+          <div className="transition-all border rounded-lg p-8 h-162 overflow-y-scroll">
             <h1 className="text-3xl font-extrabold text-white tracking-tight">
               {name}
             </h1>

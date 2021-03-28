@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/home/Navbar';
 import Footer from '@/components/home/Footer';
-import { FileUploader } from 'baseui/file-uploader';
-import { Checkbox, STYLE_TYPE, LABEL_PLACEMENT } from 'baseui/checkbox';
 import { upload } from '@/lib/upload';
 import { useAuth } from '@/lib/auth';
+import { storage } from '@/lib/firebase';
 import { addNewCollectible } from '@/lib/firestore';
 import { useRouter } from 'next/router';
 import { COLLECTIBLE_URL } from '@/lib/constants';
+import Switch from 'react-switch';
 
 const CreateCollectible = () => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -26,15 +26,17 @@ const CreateCollectible = () => {
     return null;
   }
 
-  const uploadFile = (file) => {
-    const result = upload(file[0]);
-    result
-      .then((downloadUrl) => {
-        setFile(downloadUrl);
-      })
-      .catch((error) => {
-        setErrorMessage(error);
+  const handleFileInput = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const ref = storage.ref().child(`images/${Date.now()}`);
+
+    ref.put(file, { contentType: 'image/png' }).then((data) => {
+      data.ref.getDownloadURL().then((url) => {
+        setFile(url);
       });
+    });
   };
 
   const Submit = () => {
@@ -74,16 +76,29 @@ const CreateCollectible = () => {
             </h2>
           </div>
           <div>
-            <div className="inline-block mb-32 w-5/12 border-4">
-              <FileUploader
-                errorMessage={errorMessage}
-                onDropAccepted={uploadFile}
-                accept="image/*"
-              />
+            <div className="inline-block mb-32 w-5/12">
+              <label className="w-full transition-colors flex flex-col items-center px-4 py-6 bg-transparent text-blue rounded-lg shadow-lg tracking-wide uppercase border-4 border-blue cursor-pointer hover:text-white border-dashed py-12">
+                <svg
+                  className="text-white w-8 h-8"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                </svg>
+                <span className="text-white mt-2 text-base leading-normal">
+                  Select a file
+                </span>
+                <input
+                  onChange={handleFileInput}
+                  type="file"
+                  className="hidden"
+                />
+              </label>
             </div>
             <img
               src={file}
-              className="inline-block object-contain max-w-64 max-h-64 float-right"
+              className="rounded shadow inline-block object-contain max-w-64 max-h-64 float-right"
             />
           </div>
           <div>
@@ -91,14 +106,29 @@ const CreateCollectible = () => {
               Put on Sale
             </h2>
             <div className="inline-block ml-64">
-              <Checkbox
+              {/* <Checkbox
                 checked={checked}
                 checkmarkType={STYLE_TYPE.toggle_round}
                 onChange={(e) => setChecked(e.target.checked)}
                 labelPlacement={LABEL_PLACEMENT.right}
               >
                 <p className="text-white">On Sale</p>
-              </Checkbox>
+              </Checkbox> */}
+              <Switch
+                onChange={() => setChecked(!checked)}
+                checked={checked}
+                onColor="#73C3F9"
+                onHandleColor="#FFBF2F"
+                handleDiameter={30}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                height={20}
+                width={48}
+                className="react-switch"
+                id="material-switch"
+              />
             </div>
           </div>
           <h3 className="text-white text-opacity-50 mb-8">
