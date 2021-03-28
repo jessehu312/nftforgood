@@ -25,6 +25,7 @@
     "react-switch": "^6.0.0",
     "styletron-engine-atomic": "^1.4.7",
     "styletron-react": "^6.0.1",
-    "tailwindcss": "^2.0.4"
+    "tailwindcss": "^2.0.4",
+    "yarn": "^1.22.10"
   }
 }
