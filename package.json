@@ -12,6 +12,8 @@
     "@tailwindcss/jit": "^0.1.11",
     "autoprefixer": "^10.2.5",
     "deepai": "^1.0.17",
+    "baseui": "^9.112.0",
+    "baseweb": "^3.0.7",
     "firebase": "^8.3.1",
     "framer-motion": "^4.0.3",
     "js-cookie": "^2.2.1",
@@ -20,6 +22,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
+    "styletron-engine-atomic": "^1.4.7",
+    "styletron-react": "^6.0.1",
     "tailwindcss": "^2.0.4"
   }
 }
