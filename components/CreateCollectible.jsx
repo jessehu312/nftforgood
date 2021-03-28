@@ -77,8 +77,8 @@ const CreateCollectible = () => {
             </h2>
             <h2 className="inline-block text-white float-right text-3xl mb-6 font-medium"></h2>
           </div>
-          <div>
-            <div className="inline-block mb-32 w-5/12">
+          <div className="w-full">
+            <div className="inline-block mb-32 w-full md:w-5/12">
               <label className="w-full transition-colors flex flex-col items-center px-4 py-6 bg-transparent text-blue rounded-lg shadow-lg tracking-wide uppercase border-4 border-blue cursor-pointer hover:text-white border-dashed py-12">
                 <svg
                   className="text-white w-8 h-8"
@@ -101,7 +101,7 @@ const CreateCollectible = () => {
             {!previewLoader ? (
               <img
                 src={file}
-                className="rounded shadow inline-block object-contain max-w-64 max-h-64 float-right"
+                className="md:mb-0 mb-12 rounded shadow inline-block object-contain max-w-64 max-h-64 float-right"
               />
             ) : (
               <div className="float-right">
@@ -136,7 +136,7 @@ const CreateCollectible = () => {
           </h3>
           <h2 className="text-white text-3xl font-medium mb-3">Name</h2>
           <input
-            className="outline-none w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8"
+            className="outline-none md:w-5/12 bg-pri-indigo mb-4 border-b text-white mb-8"
             placeholder="e.g. Keko Egg"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -145,7 +145,7 @@ const CreateCollectible = () => {
             Description
           </h2>
           <input
-            className="outline-none w-5/12 bg-pri-indigo mb-6 border-b text-white break-all"
+            className="outline-none md:w-5/12 bg-pri-indigo mb-6 border-b text-white break-all"
             placeholder="e.g. Rare egg that contains something you've never thought to exist."
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
@@ -153,7 +153,7 @@ const CreateCollectible = () => {
           <h2 className="text-white text-3xl mb-4 font-medium">Price</h2>
           <div className="mb-12">
             <input
-              className="w-1/5 rounded-md pl-2 py-2"
+              className="md:w-1/5 rounded-md pl-2 py-2"
               placeholder="0.02"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
@@ -165,7 +165,7 @@ const CreateCollectible = () => {
           </h2>
           <input
             list="charities"
-            className="w-5/12 rounded-md mb-12 pl-2 py-2"
+            className="md:w-5/12 rounded-md mb-12 pl-2 py-2"
             placeholder="Name of Charity"
             value={charity}
             onChange={(e) => setCharity(e.target.value)}

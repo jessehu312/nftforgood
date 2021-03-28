@@ -15,10 +15,10 @@ const CollectibleCard = ({
     <a onClick={() => router.push(COLLECTIBLE_URL + id)}>
       <div
         data-name={name.split(' ')[0].toLowerCase()}
-        className="cursor-pointer h-88 group bg-white shadow-lg rounded-4xl p-7 pt-8 transform hover:scale-105 transition ease-in-out duration-300 hover:bg-white stroke-current text-black border-solid border-4 border-gray-300"
+        className="cursor-pointer group bg-white shadow-lg rounded-4xl p-7 pt-8 transform hover:scale-105 transition ease-in-out duration-300 hover:bg-white stroke-current text-black border-solid border-4 border-gray-300"
       >
         <img
-          className="object-cover bg-center	 w-full mx-auto rounded-xl h-48 w-3/12"
+          className="object-cover bg-center w-full mx-auto rounded-xl h-72 w-3/12"
           src={img}
           alt={name}
         />

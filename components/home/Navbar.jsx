@@ -44,14 +44,6 @@ const Navbar = () => {
                       Create
                     </a>
                   </li>
-                  <li className="text-white text-sm cursor-pointer">
-                    <a
-                      onClick={() => auth.signOut()}
-                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
-                    >
-                      Sign Out
-                    </a>
-                  </li>
                   <li className="text-white cursor-pointer">
                     <a
                       onClick={() => router.push(PROFILE_URL + user.uid)}
@@ -62,6 +54,14 @@ const Navbar = () => {
                         src={user?.photoUrl}
                         alt={user?.name}
                       />
+                    </a>
+                  </li>
+                  <li className="text-white text-sm cursor-pointer">
+                    <a
+                      onClick={() => auth.signOut()}
+                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                    >
+                      Sign Out
                     </a>
                   </li>
                 </>
