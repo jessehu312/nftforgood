@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { getCollectibleIds, getCollectible, incrementViews } from '@/lib/firestore';
+import {
+  getCollectibleIds,
+  getCollectible,
+  incrementViews
+} from '@/lib/firestore';
 import Navbar from '@/components/home/Navbar';
 import PlaceBidModal from '@/components/PlaceBidModal';
 
 const CollectibleProductPage = ({
-      name,
-      id,
-      description,
-      img,
-      fiatPrice,
-      inStock,
-      totalQuantity,
-      creatorName,
-      creatorPhotoURL,
-      percentToCharity,
-      charityName
+  name,
+  id,
+  description,
+  img,
+  fiatPrice,
+  inStock,
+  totalQuantity,
+  creatorName,
+  creatorPhotoURL,
+  percentToCharity,
+  charityName
 }) => {
   const [isBidModalOpen, setBidModalOpen] = useState(false);
   const [infoTabOpen, setInfoTabOpen] = useState(true);
-  useEffect(
-    () => {
-      incrementViews(id);
-    },
-    []
-  )
+  useEffect(() => {
+    incrementViews(id);
+  }, []);
   return (
     <div className="min-h-screen bg-primary">
       <div className="border-b">
@@ -133,14 +134,14 @@ const CollectibleProductPage = ({
 
 export async function getStaticPaths() {
   const paths = await getCollectibleIds();
-  return { paths, fallback: false }
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
   return {
-    props:{ ...(await getCollectible(params.id)), id: params.id},
+    props: { ...(await getCollectible(params.id)), id: params.id },
     revalidate: 1
-  }
+  };
 }
 
 export default CollectibleProductPage;
