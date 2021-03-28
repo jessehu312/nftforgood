@@ -8,13 +8,13 @@ function MyApp({ Component, pageProps }) {
   if (process.browser) {
     const engine = new Styletron();
     return (
-      <StyletronProvider value={engine}>
-        <BaseProvider theme={LightTheme}>
-          <AuthProvider>
-            <Component {...pageProps} />
-          </AuthProvider>
-        </BaseProvider>
-      </StyletronProvider>
+      // <StyletronProvider value={engine}>
+      //   <BaseProvider theme={LightTheme}>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+      //   </BaseProvider>
+      // </StyletronProvider>
     );
   }
 

@@ -15,31 +15,47 @@ const Navbar = () => {
     <div className="mx-auto container relative px-6 xl:px-0">
       <nav>
         <div className="lg:flex justify-between w-full py-12 hidden">
-          <LogoText showImage/>
+          <LogoText showImage />
           <div className="flex">
             <ul className="font-normal text-lg flex space-x-16 justify-between items-center text-white">
-              <li className="text-white cursor-pointer">
-                <a onClick={() => router.push(ROOT_URL)} className="hover:text-yellow-500 transition duration-200 ease-in-out">
-                  Home
-                </a>
-              </li>
-              {user ? (<>
-                <li className="text-white cursor-pointer">
-                  <a
-                    onClick={() => router.push(PROFILE_URL + user.uid)}
-                    className="hover:text-yellow-500 transition duration-200 ease-in-out"
-                  >
-                    Dashboard
-                  </a>
-                </li>
-                <li className="text-white cursor-pointer">
-                  <a
-                    onClick={() => auth.signOut()}
-                    className="hover:text-yellow-500 transition duration-200 ease-in-out"
-                  >
-                    Sign Out
-                  </a>
-                </li>
+              {user ? (
+                <>
+                  <li className="text-white cursor-pointer">
+                    <a
+                      onClick={() => router.push('/generateart')}
+                      className="bg-yellow-400 text-primary px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
+                    >
+                      AI Generated Artwork
+                    </a>
+                  </li>
+                  <li className="text-white cursor-pointer">
+                    <a
+                      onClick={() => router.push('/create')}
+                      className="bg-primary border border-yellow-400 text-yellow-400 px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
+                    >
+                      Add Collectible
+                    </a>
+                  </li>
+                  <li className="text-white text-sm cursor-pointer">
+                    <a
+                      onClick={() => auth.signOut()}
+                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                    >
+                      Sign Out
+                    </a>
+                  </li>
+                  <li className="text-white cursor-pointer">
+                    <a
+                      onClick={() => router.push(PROFILE_URL + user.uid)}
+                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                    >
+                      <img
+                        className="h-12 w-12 rounded-full"
+                        src={user?.photoUrl}
+                        alt={user?.name}
+                      />
+                    </a>
+                  </li>
                 </>
               ) : (
                 <li className="text-white cursor-pointer">
@@ -50,7 +66,6 @@ const Navbar = () => {
                     Get Started
                   </a>
                 </li>
-                
               )}
             </ul>
           </div>
@@ -58,7 +73,7 @@ const Navbar = () => {
       </nav>
       <nav className="lg:hidden py-4">
         <div className="flex py-2 justify-between items-center">
-          <LogoText showImage/>
+          <LogoText showImage />
           <div className="flex items-center">
             {show ? (
               <ul
@@ -72,8 +87,8 @@ const Navbar = () => {
                 </li>
                 {user ? (
                   <li className="flex justify-center cursor-pointer text-gray-800 text-sm leading-3 tracking-normal py-2 hover:text-yellow-500 focus:text-yellow-500 focus:outline-none">
-                    <a href="_blank" onClick={() => router.push('/dashboard')}>
-                      <span className="font-bold text-md">Dashboard</span>
+                    <a onClick={() => router.push(`/profile/${user?.uid}`)}>
+                      <span className="font-bold text-md">Profile</span>
                     </a>
                   </li>
                 ) : (
