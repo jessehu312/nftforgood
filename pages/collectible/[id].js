@@ -104,22 +104,6 @@ const CollectibleProductPage = ({
                 </div>
                 <div className="mt-6">
                   <div className="bg-white rounded-lg p-6">
-                    <div className="flex flex-row items-center space-x-2 mb-4">
-                      <img
-                        className="rounded-full w-12 h-12 object-cover"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK9gqFKRn28xKHD1CAbEevdzsLmsv5yQkGnQ&usqp=CAU"
-                        alt={name}
-                      />
-                      <div className="flex flex-col justify-center items-start">
-                        <div className="text-gray-800 font-semibold">
-                          Highest bid by{' '}
-                          <span className="font-bold">John Doe</span>
-                        </div>
-                        <span className="text-gray-800 font-semibold">
-                          0.07 ETH
-                        </span>
-                      </div>
-                    </div>
                     <button
                       onClick={() => setBidModalOpen(true)}
                       className="rounded-lg bg-primary text-white p-4 w-full"
