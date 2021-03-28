@@ -1,4 +1,4 @@
-import { getProfileIds, getUserCollectibles } from '@/lib/firestore';
+import { getProfileIds, getUser, getUserCollectibles } from '@/lib/firestore';
 import ProfilePage from '@/components/ProfilePage';
 
 export async function getStaticPaths() {
@@ -8,7 +8,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   return {
-    props: await getUserCollectibles(params.userId),
+    props: { collectibles: await getUserCollectibles(params.userId), user: await getUser(params.userId)},
     revalidate: 1
   }
 }

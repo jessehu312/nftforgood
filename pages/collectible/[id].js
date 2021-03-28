@@ -6,6 +6,8 @@ import {
 } from '@/lib/firestore';
 import Navbar from '@/components/home/Navbar';
 import PlaceBidModal from '@/components/PlaceBidModal';
+import { useRouter } from 'next/router';
+import { PROFILE_URL } from '@/lib/constants';
 
 const CollectibleProductPage = ({
   name,
@@ -17,11 +19,13 @@ const CollectibleProductPage = ({
   totalQuantity,
   creatorName,
   creatorPhotoUrl,
+  creatorId,
   percentToCharity,
   charityName
 }) => {
   const [isBidModalOpen, setBidModalOpen] = useState(false);
   const [infoTabOpen, setInfoTabOpen] = useState(true);
+  const router = useRouter();
   useEffect(() => {
     incrementViews(id);
   }, []);
@@ -74,16 +78,18 @@ const CollectibleProductPage = ({
                 </div>
                 <div className="mt-6 flex flex-col space-y-1">
                   <p className="text-white font-semibold mb-1">Creator</p>
-                  <div className="flex flex-row items-center space-x-2">
-                    <img
-                      className="rounded-full w-12 h-12 object-cover"
-                      src={creatorPhotoUrl}
-                      alt={name}
-                    />
-                    <span className="text-white font-semibold mb-1">
-                      {creatorName}
-                    </span>
-                  </div>
+                  <a onClick={() => { router.push(PROFILE_URL + creatorId)}}>
+                    <div className="flex flex-row items-center space-x-2">
+                      <img
+                        className="rounded-full w-12 h-12 object-cover"
+                        src={creatorPhotoUrl}
+                        alt={name}
+                      />
+                      <span className="text-white font-semibold mb-1">
+                        {creatorName}
+                      </span>
+                    </div>
+                  </a>
                 </div>
                 <div className="text-gray-100 mt-6">
                   <span className="font-medium text-yellow-400">

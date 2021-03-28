@@ -1,8 +1,6 @@
 import '../styles/globals.css';
 import { AuthProvider } from '@/lib/auth';
 import { Client as Styletron } from 'styletron-engine-atomic';
-import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider } from 'baseui';
 
 function MyApp({ Component, pageProps }) {
   if (process.browser) {
