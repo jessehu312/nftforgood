@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth';
 import SocialSignIn from './SocialSignIn';
-import LogoText from '../LogoText';
+import LogoText from '@/components/common/LogoText';
 import { PROFILE_URL, ROOT_URL } from '@/lib/constants';
 
 const Navbar = () => {
