@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/home/Navbar';
 import CollectibleCard from '@/components/CollectibleCard';
-import UnderlinedTabs from '@/components/UnderlinedTabs';
+import Tabs from '@/components/common/Tabs';
+import UnderlinedTab from '@/components/common/UnderlinedTab';
 import Footer from '@/components/home/Footer';
 
 const ProfilePage = ({user, collectibles}) => {
@@ -19,13 +20,14 @@ const ProfilePage = ({user, collectibles}) => {
           <h2 className="text-white font-light mb-36">
             So in love with crypto and art
           </h2>
-          <UnderlinedTabs
+          <Tabs
             buttonStatus={buttonStatus}
             setButtonStatus={setButtonStatus}
+            component={UnderlinedTab}
           >
             <div label="On Sale" value="sale"></div>
             <div label="My Collectibles" value="all"></div>
-          </UnderlinedTabs>
+          </Tabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
             {collectibles[buttonStatus].map((el, idx) => (
               <CollectibleCard

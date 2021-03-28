@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import CollectibleCard from '../CollectibleCard';
-import Tabs from '@/components/home/Tabs';
+import Tabs from '@/components/common/Tabs';
+import Tab from '@/components/common/Tab';
 import Navbar from '@/components/home/Navbar';
 import Banner from '@/components/home/Banner';
 import Footer from '@/components/home/Footer';
@@ -16,7 +17,7 @@ const Collectibles = (props) => {
           <h1 className="text-primary text-pri-yellow text-5xl font-bold mb-6 w-full">
             Explore Collectibles
           </h1>
-          <Tabs buttonStatus={buttonStatus} setButtonStatus={setButtonStatus}>
+          <Tabs buttonStatus={buttonStatus} setButtonStatus={setButtonStatus} component={Tab}>
             <div label="All" value="all"></div>
             <div label="Art" value="art"></div>
             <div label="Photography" value="photography"></div>
