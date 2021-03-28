@@ -306,13 +306,6 @@ def dummy(request):
         
         payload["chain"] = []
 
-        # candidates = []
-
-        # for can in request_json['candidates']:
-        #     candidates.append(can)
-
-        # payload["candidates"] = candidates
-        
         
 
         
@@ -335,9 +328,9 @@ def dummy(request):
 
 
 
-    if action == "addcandidate" :
+    if action == "addrawimg" :
         maxid = 1
-        col = db.candidates
+        col = db.imgs
         for x in col.find():
             id = x["id"]
             maxid +=1
@@ -412,83 +405,6 @@ def dummy(request):
 
 
 
-
-    if action== "countvote":
-        id = request_json['id']
-        col = db.elections
-        results = {}
-
-        for x in col.find():
-            if x['id'] == request_json['id']:
-                
-                # chain = x['chain']
-                blockchain = loadchain(db, blockchain, request_json['id'])
-                chain_data = []
-                type = x['type']
-                candidates = x['candidates']
-
-                for can in candidates:
-                    results[can] = 0
-                
-                for block in blockchain.chain:
-                    chain_data.append(block.__dict__)
-                
-                for c in chain_data:
-                    if len(c['transactions']) == 0:
-                        continue
-                    vote =  c['transactions'][0]
-                    res = vote.strip('][').split(', ')
-                    
-                    if type == 'single':
-                        results[res[0]] += 1
-                    
-                    if type == 'multi':
-                        for v in res:
-                            results[v] += 1
-                    
-                    if type == 'ranked':
-                        results[res[0]] += 3
-                        results[res[1]] += 2
-                        results[res[2]] += 1                    
-        
-        retjson = {}
-
-        retjson['results'] = results
-        retjson['status'] = "successful"
-        
-        return json.dumps(retjson)
-
-
-
-    if action == "vote" :
-        userid = request_json['userid']
-        userface = request_json['userface']
-        first = request_json['first']
-        second = request_json['second']        
-        third = request_json['third']
-
-        vid, v, h =  vote(conn, userid, userface, first, second, third)
-
-
-        retjson['status'] = "successfully added"
-        retjson['id'] = vid
-        retjson['vote'] = v
-        retjson['hash'] = h
-        
-
-        return json.dumps(retjson)
-
-    if action == 'getvotes':
-
-        res = getvotes(conn)
-
-        # res = login(conn, uemail, pw)
-
-        retjson['candidates'] = res
-
-        
-
-        return json.dumps(retjson)
 
 
 
