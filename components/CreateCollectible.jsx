@@ -17,7 +17,7 @@ const CreateCollectible = () => {
   const [file, setFile] = useState('');
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState('');
   const [charity, setCharity] = useState('');
   const [percent, setPercent] = useState('');
   const [bid, setBid] = useState('');
