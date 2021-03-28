@@ -17,11 +17,11 @@ const Collectibles = (props) => {
             Explore Collectibles
           </h1>
           <Tabs buttonStatus={buttonStatus} setButtonStatus={setButtonStatus}>
-            <div label="all"></div>
-            <div label="art"></div>
-            <div label="photography"></div>
-            <div label="games"></div>
-            <div label="memes"></div>
+            <div label="All" value="all"></div>
+            <div label="Art" value="art"></div>
+            <div label="Photography" value="photography"></div>
+            <div label="Games" value="game"></div>
+            <div label="Memes" value="meme"></div>
           </Tabs>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
             {props[buttonStatus].map((el, idx) => (

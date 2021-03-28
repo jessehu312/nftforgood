@@ -65,7 +65,7 @@ const Navbar = () => {
                     </a>
                   </li>
                 </>
-              ) : (
+              ) : (<>
                 <li className="text-white cursor-pointer">
                   <a
                     onClick={() => setOpen(true)}
@@ -74,7 +74,15 @@ const Navbar = () => {
                     Get Started
                   </a>
                 </li>
-              )}
+                <li className="text-white cursor-pointer">
+                    <a
+                      onClick={() => router.push('/collections')}
+                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                    >
+                      Explore
+                    </a>
+                  </li>
+              </>)}
             </ul>
           </div>
         </div>
@@ -89,8 +97,13 @@ const Navbar = () => {
                 className=" py-2 mx-8 border-r bg-white absolute rounded top-0 left-0 right-0 shadow mt-20 md:px-4 md:mt-20 z-20"
               >
                 <li className="flex justify-center cursor-pointer text-gray-800 text-sm leading-3 tracking-normal py-2 hover:text-yellow-500 focus:text-yellow-500 focus:outline-none">
-                  <a href="_blank">
+                  <a onClick={() => router.push(ROOT_URL)}>
                     <span className="font-bold text-md">Home</span>
+                  </a>
+                </li>
+                <li className="flex justify-center cursor-pointer text-gray-800 text-sm leading-3 tracking-normal py-2 hover:text-yellow-500 focus:text-yellow-500 focus:outline-none">
+                  <a onClick={() => router.push('/collections')}>
+                    <span className="font-bold text-md">Explore</span>
                   </a>
                 </li>
                 {user ? (
