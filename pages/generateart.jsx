@@ -6,6 +6,7 @@ import deepai from 'deepai';
 import { storage } from '@/lib/firebase';
 import { getUser, decrementCoinResource } from '@/lib/firestore';
 import { useAuth } from '@/lib/auth';
+import Loader from '@/components/common/Loader';
 
 const GenerateArt = () => {
   const auth = useAuth();
@@ -13,6 +14,7 @@ const GenerateArt = () => {
   const [goodCoins, setGoodCoins] = useState();
   const [styleIndex, setStyleIndex] = useState(0);
   const [selectedFileLink, setSelectedFileLink] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleFileInput = async (e) => {
     const file = e.target.files[0];
@@ -48,6 +50,12 @@ const GenerateArt = () => {
 
   const handleSubmit = async () => {
     if (!selectedFileLink) return;
+    if (goodCoins <= 0) {
+      alert('Not enough Good Coins!');
+      return;
+    }
+
+    setLoading(true);
 
     const resp = await deepai.callStandardApi('fast-style-transfer', {
       content: selectedFileLink,
@@ -59,6 +67,8 @@ const GenerateArt = () => {
     decrementCoinResource(auth?.user?.uid).then(() =>
       setGoodCoins(goodCoins - 1)
     );
+
+    setLoading(false);
 
     window.open(ganArt, '_blank').focus();
 
@@ -131,12 +141,16 @@ const GenerateArt = () => {
           <div className="w-full">
             <div className="w-full flex flex-row items-center justify-between mb-12">
               <h1 className="text-white font-bold text-2xl">Choose Style</h1>
-              <button
-                onClick={handleSubmit}
-                className="bg-yellow-400 p-2 w-[8rem] rounded-lg mt-4 text-primary font-bold"
-              >
-                Submit
-              </button>
+              {loading ? (
+                <Loader />
+              ) : (
+                <button
+                  onClick={handleSubmit}
+                  className="bg-yellow-400 p-2 w-[8rem] rounded-lg mt-4 text-primary font-bold"
+                >
+                  Submit
+                </button>
+              )}
             </div>
             <div className="bg-white rounded shadow-sm h-96 overflow-y-scroll">
               <div className="grid grid-cols-3 gap-2 p-4">
