@@ -22,18 +22,18 @@ const Navbar = () => {
                 <>
                   <li className="text-white cursor-pointer">
                     <a
-                      onClick={() => router.push('/generateart')}
-                      className="bg-yellow-400 text-primary px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
+                      onClick={() => router.push('/collections')}
+                      className="hover:text-yellow-500 transition text-sm duration-200 ease-in-out"
                     >
-                      AI Generated Artwork
+                      Explore
                     </a>
                   </li>
                   <li className="text-white cursor-pointer">
                     <a
-                      onClick={() => router.push('/collections')}
-                      className="bg-primary border border-yellow-400 text-yellow-400 px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
+                      onClick={() => router.push('/generateart')}
+                      className="bg-yellow-400 text-primary px-6 py-2 text-sm font-bold rounded-full transition duration-200 ease-in-out"
                     >
-                      Explore
+                      AI Generated Artwork
                     </a>
                   </li>
                   <li className="text-white cursor-pointer">
@@ -65,16 +65,17 @@ const Navbar = () => {
                     </a>
                   </li>
                 </>
-              ) : (<>
-                <li className="text-white cursor-pointer">
-                  <a
-                    onClick={() => setOpen(true)}
-                    className="hover:text-yellow-500 transition duration-200 ease-in-out"
-                  >
-                    Get Started
-                  </a>
-                </li>
-                <li className="text-white cursor-pointer">
+              ) : (
+                <>
+                  <li className="text-white cursor-pointer">
+                    <a
+                      onClick={() => setOpen(true)}
+                      className="hover:text-yellow-500 transition duration-200 ease-in-out"
+                    >
+                      Get Started
+                    </a>
+                  </li>
+                  <li className="text-white cursor-pointer">
                     <a
                       onClick={() => router.push('/collections')}
                       className="hover:text-yellow-500 transition duration-200 ease-in-out"
@@ -82,7 +83,8 @@ const Navbar = () => {
                       Explore
                     </a>
                   </li>
-              </>)}
+                </>
+              )}
             </ul>
           </div>
         </div>

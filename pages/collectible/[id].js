@@ -78,10 +78,14 @@ const CollectibleProductPage = ({
                 </div>
                 <div className="mt-6 flex flex-col space-y-1">
                   <p className="text-white font-semibold mb-1">Creator</p>
-                  <a onClick={() => { router.push(PROFILE_URL + creatorId)}}>
+                  <a
+                    onClick={() => {
+                      router.push(PROFILE_URL + creatorId);
+                    }}
+                  >
                     <div className="flex flex-row items-center space-x-2">
                       <img
-                        className="rounded-full w-12 h-12 object-cover"
+                        className="cursor-pointer rounded-full w-12 h-12 object-cover"
                         src={creatorPhotoUrl}
                         alt={name}
                       />
