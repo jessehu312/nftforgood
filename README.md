@@ -1,5 +1,8 @@
 ![alt text](https://i.imgur.com/rxyqiLJ.gif)
 
+[Live demo here](https://www.youtube.com/watch?v=KAlC9DBHp7Y)
+
+
 ## Inspiration
 Digital assets have been on the rise lately, cryptocurrency and artwork have gathered a large audience. Given the newness of the space there is a lack of platforms that allow users to safely purchase digital assets and also supports charitable causes for those in need. By tying these two key needs together we hope to unlock great potential, creating a platform that allows NFT collectors and NFT artists to work hand in hand to create a better environment for our world.
 
@@ -50,5 +53,6 @@ NextJS App w/ SSG, Backend on Google Cloud Functions for blockchain and crypto t
 - Full crypto auction and transactions
 - Blockchain visualization
 - Bring social good to the world
-- 
+
+
 ![alt text](https://i.imgur.com/FigKxXO.jpg)
