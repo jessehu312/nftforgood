@@ -5,7 +5,7 @@ import Tabs from '@/components/common/Tabs';
 import UnderlinedTab from '@/components/common/UnderlinedTab';
 import Footer from '@/components/home/Footer';
 
-const ProfilePage = ({user, collectibles}) => {
+const ProfilePage = ({ user, collectibles }) => {
   const [buttonStatus, setButtonStatus] = useState('sale');
   if (!user) {
     return null;
@@ -16,7 +16,7 @@ const ProfilePage = ({user, collectibles}) => {
       <div className="max-w-screen-xl mx-auto px-8 py-8 xl:px-0">
         <div className="flex flex-col items-center justify-center mx-16">
           <img src={user.photoUrl} className="mt-24 rounded-full"></img>
-          <h1 className="text-white font-bold text-4xl my-2">{user.name}</h1>
+          <h1 className="text-white font-bold text-4xl my-4">{user.name}</h1>
           <h2 className="text-white font-light mb-36">
             So in love with crypto and art
           </h2>
@@ -28,12 +28,9 @@ const ProfilePage = ({user, collectibles}) => {
             <div label="On Sale" value="sale"></div>
             <div label="My Collectibles" value="all"></div>
           </Tabs>
-          <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4 md:gap-12 lg:gap-x-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-12 lg:gap-x-8">
             {collectibles[buttonStatus].map((el, idx) => (
-              <CollectibleCard
-                key={idx}
-                {...el}
-              />
+              <CollectibleCard key={idx} {...el} />
             ))}
           </div>
         </div>

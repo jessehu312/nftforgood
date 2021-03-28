@@ -47,7 +47,12 @@ const SocialSignIn = ({ setOpen }) => {
         </div>
         <div className="mt-4 px-4 flex flex-col space-y-4 items-center justify-center">
           <button
-            onClick={() => auth.signInWithGoogle().then(() => router.push(PROFILE_URL))}
+            onClick={() =>
+              auth
+                .signInWithGoogle()
+                .then(() => setOpen(false))
+                .then(() => router.push(PROFILE_URL))
+            }
             className="bg-white w-full flex flex-row justify-center items-center rounded shadow-sm transition duration-200 ease-in-out transform hover:-translate-y-1"
           >
             <div className="bg-white inline-block p-2 rounded m-1">
@@ -58,7 +63,9 @@ const SocialSignIn = ({ setOpen }) => {
             </span>
           </button>
           <button
-            onClick={() => auth.signInWithGithub().then(() => router.push(PROFILE_URL))}
+            onClick={() =>
+              auth.signInWithGithub().then(() => router.push(PROFILE_URL))
+            }
             className="bg-gray-900 w-full flex flex-row justify-center items-center rounded shadow-sm transition duration-200 ease-in-out transform hover:-translate-y-1"
           >
             <div className="bg-transparent inline-block p-2 rounded m-1">
