@@ -141,11 +141,16 @@ const CreateCollectible = () => {
             onChange={(e) => setCharity(e.target.value)}
           />
           <datalist id="charities">
-            <option value="Charity 1" />
-            <option value="Charity 2" />
-            <option value="Charity 3" />
-            <option value="Charity 4" />
-            <option value="Charity 5" />
+            <option value="Friends of Animals" />
+            <option value="National Council on Aging" />
+            <option value="Feeding America" />
+            <option value="International Medical Corps" />
+            <option value="ChildFund International" />
+            <option value="Food and Water Watch" />
+            <option value="Conservation International Foundation" />
+            <option value="World Resources Institute" />
+            <option value="Food Bank For New York City" />
+            <option value="Mental Health America (MHA)" />
           </datalist>
           <h2 className="text-white text-3xl mb-4 font-medium">
             Donation Percentage
